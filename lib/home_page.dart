@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:food_blaze/widgets/categories.dart';
-import 'package:food_blaze/widgets/title.dart';
+
+import 'widgets/categories.dart';
+import 'widgets/custom_subtitles.dart';
+import 'widgets/custom_text.dart';
+import 'widgets/featured_food.dart';
+import 'widgets/custom_nav_bar.dart';
+import 'widgets/popular_food.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -19,7 +24,11 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('What do you want to eat'),
+                  child: CustomText(
+                    text: 'What do you want to eat?',
+                    size: 18,
+                    weight: FontWeight.bold,
+                  ),
                 ),
                 Stack(
                   children: [
@@ -78,9 +87,14 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Categories(),
+            CustomSubTitles(title: 'Featured'),
+            FeaturedFood(),
+            CustomSubTitles(title: 'Popular'),
+            PopularFood(),
           ],
         ),
       ),
+      bottomNavigationBar: MyNavBar(),
     );
   }
 }

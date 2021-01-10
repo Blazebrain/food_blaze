@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:food_blaze/models/category.dart';
 
-import 'title.dart';
+import 'custom_text.dart';
+
+List<Category> categoriesList = [
+  Category(name: 'Salad', imageUrl: 'salad.png'),
+  Category(name: 'Steak', imageUrl: 'steak.png'),
+  Category(name: 'Fast food', imageUrl: 'sandwich.png'),
+  Category(name: 'Deserts', imageUrl: 'ice-cream.png'),
+  Category(name: 'Sea Food', imageUrl: 'fish.png'),
+  Category(name: 'Salad', imageUrl: 'salad.png'),
+  Category(name: 'Steak', imageUrl: 'steak.png'),
+];
 
 class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120,
+      height: 100,
       child: ListView.builder(
-          itemCount: 6,
+          itemCount: categoriesList.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Padding(
@@ -22,24 +33,24 @@ class Categories extends StatelessWidget {
                         BoxShadow(
                           blurRadius: 4,
                           offset: Offset(4, 6),
-                          color: Colors.red[100],
+                          color: Colors.red[50],
                         )
                       ],
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(4),
                       child: Image.asset(
-                        'images/salad.png',
+                        'images/${categoriesList[index].imageUrl}',
                         width: 50,
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 4,
+                    height: 10,
                   ),
                   CustomText(
-                    text: 'Salad',
-                    size: 16,
+                    text: categoriesList[index].name,
+                    size: 14,
                     color: Colors.black,
                   ),
                 ],
