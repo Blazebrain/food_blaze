@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "795467378493",
+    "project_id": "blaze-meals",
+    "storage_bucket": "blaze-meals.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795467378493:android:4ffd224857020ed2fd5f54",
+        "android_client_info": {
+          "package_name": "com.Blazebrain.blaze_meals"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "795467378493-ggtfr8lgpt0d37mtpkvhp382lfkbddk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxtfJLFESg760XrcqiVZs0JvPHzKe21lE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "795467378493-ggtfr8lgpt0d37mtpkvhp382lfkbddk5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

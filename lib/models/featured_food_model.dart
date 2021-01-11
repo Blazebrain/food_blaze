@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-class Featured {
+class FeaturedFoodModel {
   final String imageUrl;
   final String name;
   final String price;
@@ -8,7 +8,7 @@ class Featured {
   final String vendor;
   final bool wish;
 
-  Featured({
+  FeaturedFoodModel({
     @required this.imageUrl,
     @required this.name,
     @required this.price,

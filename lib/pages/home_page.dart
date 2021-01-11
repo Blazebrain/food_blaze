@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/categories.dart';
-import 'widgets/custom_subtitles.dart';
-import 'widgets/custom_text.dart';
-import 'widgets/featured_food.dart';
-import 'widgets/custom_nav_bar.dart';
-import 'widgets/popular_food.dart';
+import '../widgets/categories.dart';
+import '../widgets/custom_subtitles.dart';
+import '../widgets/custom_text.dart';
+import '../widgets/featured_food.dart';
+import '../widgets/custom_nav_bar.dart';
+import '../widgets/popular_food.dart';
 
 class HomePage extends StatefulWidget {
   @override

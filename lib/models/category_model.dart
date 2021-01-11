@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Category {
+class CategoryModel {
   final String name;
   final String imageUrl;
 
-  Category({
+  CategoryModel({
     @required this.name,
     @required this.imageUrl,
   });

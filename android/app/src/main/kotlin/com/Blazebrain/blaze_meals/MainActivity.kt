@@ -1,4 +1,4 @@
-package com.Blazebrain.food_blaze
+package com.Blazebrain.blaze_meals
 
 import io.flutter.embedding.android.FlutterActivity
 

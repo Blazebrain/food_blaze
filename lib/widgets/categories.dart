@@ -1,17 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_blaze/models/category.dart';
 
+import '../data/category_data.dart';
 import 'custom_text.dart';
-
-List<Category> categoriesList = [
-  Category(name: 'Salad', imageUrl: 'salad.png'),
-  Category(name: 'Steak', imageUrl: 'steak.png'),
-  Category(name: 'Fast food', imageUrl: 'sandwich.png'),
-  Category(name: 'Deserts', imageUrl: 'ice-cream.png'),
-  Category(name: 'Sea Food', imageUrl: 'fish.png'),
-  Category(name: 'Salad', imageUrl: 'salad.png'),
-  Category(name: 'Steak', imageUrl: 'steak.png'),
-];
 
 class Categories extends StatelessWidget {
   @override
