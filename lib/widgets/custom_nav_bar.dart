@@ -3,8 +3,6 @@ import 'package:food_blaze/pages/cart.dart';
 import 'package:food_blaze/pages/home_page.dart';
 import 'package:food_blaze/pages/login_page.dart';
 
-import 'custom_text.dart';
-
 class MyNavBar extends StatelessWidget {
   const MyNavBar({
     Key key,
@@ -37,11 +35,12 @@ class MyNavBar extends StatelessWidget {
               width: 26,
               height: 26,
             ),
-            title: CustomText(
-              text: 'Home',
-              color: Colors.black,
-              size: 14,
-            ),
+            label: 'Home',
+            // title: CustomText(
+            //   text: 'Home',
+            //   color: Colors.black,
+            //   size: 14,
+            // ),
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
@@ -49,11 +48,12 @@ class MyNavBar extends StatelessWidget {
               width: 26,
               height: 26,
             ),
-            title: CustomText(
-              text: 'Near by',
-              color: Colors.black,
-              size: 14,
-            ),
+            label: 'Near by',
+            // title: CustomText(
+            //   text: 'Near by',
+            //   color: Colors.black,
+            //   size: 14,
+            // ),
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
@@ -61,11 +61,12 @@ class MyNavBar extends StatelessWidget {
               width: 26,
               height: 26,
             ),
-            title: CustomText(
-              text: 'Cart',
-              color: Colors.black,
-              size: 14,
-            ),
+            label: 'Cart',
+            // title: CustomText(
+            //   text: 'Cart',
+            //   color: Colors.black,
+            //   size: 14,
+            // ),
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
@@ -73,11 +74,12 @@ class MyNavBar extends StatelessWidget {
               width: 26,
               height: 26,
             ),
-            title: CustomText(
-              text: 'Account',
-              color: Colors.black,
-              size: 14,
-            ),
+            label: 'Account',
+            // title: CustomText(
+            //   text: 'Account',
+            //   color: Colors.black,
+            //   size: 14,
+            // ),
           ),
         ]);
   }

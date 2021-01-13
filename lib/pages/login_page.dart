@@ -12,6 +12,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    // final authProvider = Provider
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
