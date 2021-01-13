@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class LoginFormsWidget extends StatelessWidget {
   final String formType;
   final IconData formTypeIcon;
+  final TextEditingController controller;
   const LoginFormsWidget({
     Key key,
     this.formType,
     this.formTypeIcon,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -22,6 +24,7 @@ class LoginFormsWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: TextFormField(
+            controller: controller,
             decoration: InputDecoration(
               icon: Icon(formTypeIcon),
               hintText: formType,

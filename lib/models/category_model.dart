@@ -1,11 +1,20 @@
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CategoryModel {
-  final String name;
-  final String imageUrl;
+  static const NAME = "name";
+  static const ID = "id";
+  static const IMAGE = "image";
+  String _name;
+  String _image;
+  String _id;
 
-  CategoryModel({
-    @required this.name,
-    @required this.imageUrl,
-  });
+  String get id => _id;
+  String get name => _name;
+  String get image => _image;
+
+  CategoryModel.fromSnapshot(DocumentSnapshot snapshot) {
+    _id = snapshot.get(ID);
+    _name = snapshot.get(NAME);
+    _image = snapshot.get(IMAGE);
+  }
 }

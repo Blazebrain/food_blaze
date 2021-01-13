@@ -30,7 +30,7 @@ class Categories extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(4),
                       child: Image.asset(
-                        'images/${categoriesList[index].imageUrl}',
+                        'images/${categoriesList[index].image}',
                         width: 50,
                       ),
                     ),

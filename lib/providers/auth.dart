@@ -70,6 +70,8 @@ class AuthProvider with ChangeNotifier {
             "name": usernameController.text,
             "email": emailController.text,
             "id": user.user.uid,
+            "likedFood": [],
+            "likedRestaurants": [],
           };
           _userServices.createUser(values);
           return true;
