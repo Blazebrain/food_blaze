@@ -19,9 +19,9 @@ class UserModel {
   String get stripeId => _stripeId;
 
   UserModel.fromSnapshot(DocumentSnapshot snapshot) {
-    _id = snapshot.get(ID);
-    _name = snapshot.get(NAME);
-    _email = snapshot.get(EMAIL);
-    _stripeId = snapshot.get(STRIPE_ID);
+    _id = snapshot.data()[ID];
+    _name = snapshot.data()[NAME];
+    _email = snapshot.data()[EMAIL];
+    _stripeId = snapshot.data()[STRIPE_ID];
   }
 }

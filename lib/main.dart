@@ -1,10 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:food_blaze/pages/home_page.dart';
-import 'package:food_blaze/pages/login_page.dart';
-import 'package:food_blaze/providers/auth.dart';
-
 import 'package:provider/provider.dart';
+
+import 'data/providers/category_provider.dart';
+import 'data/providers/product_provider.dart';
+import 'data/providers/restaurant_provider.dart';
+import 'data/providers/user_provider.dart';
+import 'pages/inbetween.dart';
+import 'pages/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +17,16 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider.value(
-          value: AuthProvider.initialize(),
+          value: UserProvider.initialize(),
+        ),
+        ChangeNotifierProvider.value(
+          value: CategoryProvider.initialize(),
+        ),
+        ChangeNotifierProvider.value(
+          value: RestaurantsProvider.initialize(),
+        ),
+        ChangeNotifierProvider.value(
+          value: ProductsProvider.initialize(),
         )
       ],
       child: MaterialApp(
@@ -39,7 +51,7 @@ void main() async {
 class ScreenController extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AuthProvider>(context);
+    final auth = Provider.of<UserProvider>(context);
     switch (auth.status) {
       case Status.Uninitialized:
         return LoginPage();
@@ -47,7 +59,7 @@ class ScreenController extends StatelessWidget {
       case Status.Authenticating:
         return LoginPage();
       case Status.Authenticated:
-        return HomePage();
+        return InBetween();
       default:
         return LoginPage();
     }

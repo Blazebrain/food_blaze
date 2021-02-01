@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_blaze/models/user_model.dart';
-import 'package:food_blaze/utilities/user_services.dart';
+import 'package:food_blaze/data/services/user_services.dart';
 
 enum Status {
   Uninitialized,
@@ -10,7 +10,7 @@ enum Status {
   Authenticated,
 }
 
-class AuthProvider with ChangeNotifier {
+class UserProvider with ChangeNotifier {
   FirebaseAuth _auth;
   User _user;
   Status _status = Status.Uninitialized;
@@ -29,7 +29,7 @@ class AuthProvider with ChangeNotifier {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  AuthProvider.initialize() : _auth = FirebaseAuth.instance {
+  UserProvider.initialize() : _auth = FirebaseAuth.instance {
     // when user changes from unauthenticated to authenticated, we want to be listen and then do something to reflect that change in firebase
     _auth.userChanges().listen(_onStateChanged);
   }

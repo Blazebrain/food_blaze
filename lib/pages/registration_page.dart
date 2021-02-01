@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:food_blaze/providers/auth.dart';
-import 'package:food_blaze/widgets/loading.dart';
 import 'package:provider/provider.dart';
 
+import '../data/providers/user_provider.dart';
 import '../widgets/custom_text.dart';
-import '../widgets/login_form_widget.dart';
+import '../widgets/custom_textFormField_widget.dart';
+import '../widgets/loading.dart';
 import 'home_page.dart';
 import 'login_page.dart';
 
@@ -16,7 +16,7 @@ class RegistrationPage extends StatefulWidget {
 class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final authProvider = Provider.of<UserProvider>(context);
     final _key = GlobalKey<ScaffoldState>();
     return Scaffold(
       key: _key,

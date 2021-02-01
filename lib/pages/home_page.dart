@@ -1,14 +1,20 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:food_blaze/providers/auth.dart';
 import 'package:provider/provider.dart';
 
+import '../data/providers/category_provider.dart';
+import '../data/providers/product_provider.dart';
+import '../data/providers/restaurant_provider.dart';
+import '../data/providers/user_provider.dart';
+import '../utilities/navigation.dart';
 import '../widgets/categories.dart';
+import '../widgets/custom_nav_bar.dart';
 import '../widgets/custom_subtitles.dart';
 import '../widgets/custom_text.dart';
 import '../widgets/featured_food.dart';
-import '../widgets/custom_nav_bar.dart';
-import '../widgets/popular_food.dart';
-import 'cart.dart';
+import '../widgets/popular_restaurants.dart';
+import 'restaurant_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,8 +23,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    Future.delayed(Duration(seconds: 2));
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
+    final categoryProvider = Provider.of<CategoryProvider>(context);
+    final restaurantsProvider = Provider.of<RestaurantsProvider>(context);
+    final productsProvider = Provider.of<ProductsProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -35,9 +51,10 @@ class _HomePageState extends State<HomePage> {
             children: [
               IconButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ShoppingCart();
-                  }));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //   return ShoppingCart();
+                  // }));
+                  userProvider.signOut();
                 },
                 icon: Icon(
                   Icons.shopping_cart,
@@ -91,12 +108,12 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.orange,
               ),
               accountName: CustomText(
-                text: authProvider.userModel.name,
+                text: userProvider.userModel.name,
                 color: Colors.white,
                 weight: FontWeight.bold,
               ),
               accountEmail: CustomText(
-                text: authProvider.userModel.email,
+                text: userProvider.userModel.email,
                 color: Colors.white,
               ),
             ),
@@ -142,19 +159,6 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: ListView(
           children: [
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     Padding(
-            //       padding: const EdgeInsets.all(8.0),
-            //       child: CustomText(
-            //         text: 'What do you want to eat?',
-            //         size: 18,
-            //         weight: FontWeight.bold,
-            //       ),
-            //     ),
-            //   ],
-            // ),
             SizedBox(
               height: 4,
             ),
@@ -169,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                       blurRadius: 4,
                       offset: Offset(1, 1),
                       color: Colors.grey[400],
-                    )
+                    ),
                   ],
                 ),
                 child: ListTile(
@@ -190,11 +194,32 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Categories(),
+            Categories(
+              categories: categoryProvider.categories,
+            ),
             CustomSubTitles(title: 'Featured'),
-            FeaturedFood(),
+            FeaturedFood(
+              featuredFoodsList: productsProvider.productsList,
+            ),
             CustomSubTitles(title: 'Popular'),
-            PopularFood(),
+            Column(
+              children: restaurantsProvider.restaurantsList.map((restaurant) {
+                return GestureDetector(
+                  onTap: () async {
+                    await productsProvider
+                        .loadProductsByRestaurants(restaurant.id);
+                    changeScreen(
+                        context,
+                        RestaurantPage(
+                          restaurantModel: restaurant,
+                        ));
+                  },
+                  child: PopularRestaurants(
+                    restaurants: restaurant,
+                  ),
+                );
+              }).toList(),
+            )
           ],
         ),
       ),

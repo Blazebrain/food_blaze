@@ -6,9 +6,9 @@ class CategoryModel {
   static const IMAGE = "image";
   String _name;
   String _image;
-  String _id;
+  int _id;
 
-  String get id => _id;
+  int get id => _id;
   String get name => _name;
   String get image => _image;
 

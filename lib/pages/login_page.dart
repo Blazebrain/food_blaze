@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:food_blaze/pages/home_page.dart';
-import 'package:food_blaze/pages/registration_page.dart';
-import 'package:food_blaze/providers/auth.dart';
-
-import 'package:food_blaze/widgets/custom_text.dart';
-import 'package:food_blaze/widgets/loading.dart';
-import 'package:food_blaze/widgets/login_form_widget.dart';
 import 'package:provider/provider.dart';
+
+import '../data/providers/user_provider.dart';
+import '../widgets/custom_text.dart';
+import '../widgets/custom_textFormField_widget.dart';
+import '../widgets/loading.dart';
+import 'inbetween.dart';
+import 'registration_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final authProvider = Provider.of<UserProvider>(context);
     final _key = GlobalKey<ScaffoldState>();
     return Scaffold(
       key: _key,
@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return HomePage();
+                              return InBetween();
                             },
                           ),
                         );

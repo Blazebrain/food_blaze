@@ -11,29 +11,31 @@ class ProductModel {
   static const RESTAURANT = "restaurant";
   static const CATEGORY = "category";
   static const RATES = "rates";
+  static const DESCRIPTION = "description";
 
   String _id;
   String _name;
-  String _price;
-  String _rating;
+  double _price;
+  double _rating;
   String _image;
-  String _featured;
-  String _restaurantId;
+  bool _featured;
+  int _restaurantId;
   String _restaurant;
   String _category;
   int _rates;
+  String _description;
 
   String get id => _id;
   String get name => _name;
-  String get price => _price;
-  String get rating => _rating;
+  double get price => _price;
+  double get rating => _rating;
   String get image => _image;
-  String get featured => _featured;
-  String get restaurantId => _restaurantId;
+  bool get featured => _featured;
+  int get restaurantId => _restaurantId;
   String get restaurant => _restaurant;
   String get category => _category;
   int get rates => _rates;
-
+  String get description => _description;
   ProductModel.fromSnapshot(DocumentSnapshot snapshot) {
     _id = snapshot.get(ID);
     _name = snapshot.get(NAME);
@@ -45,5 +47,6 @@ class ProductModel {
     _restaurant = snapshot.get(RESTAURANT);
     _category = snapshot.get(CATEGORY);
     _rates = snapshot.get(RATES);
+    _description = snapshot.get(DESCRIPTION);
   }
 }

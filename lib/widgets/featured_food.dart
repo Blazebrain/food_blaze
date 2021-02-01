@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:food_blaze/pages/details_page.dart';
+import 'package:transparent_image/transparent_image.dart';
 
-import '../data/featured_food_data.dart';
+import '../models/product_model.dart';
+import '../pages/details_page.dart';
 import 'custom_text.dart';
 import 'favourite_button.dart';
+import 'loading.dart';
 
 class FeaturedFood extends StatelessWidget {
+  final List<ProductModel> featuredFoodsList;
   const FeaturedFood({
     Key key,
+    this.featuredFoodsList,
   }) : super(key: key);
 
   @override
@@ -17,15 +21,15 @@ class FeaturedFood extends StatelessWidget {
       height: 240,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: featuredFoodList.length,
+        itemCount: featuredFoodsList.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(4.0),
             child: GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return DetailsPage(
-                    featuredFoodModel: featuredFoodList[index],
+                    featuredFoodModel: featuredFoodsList[index],
                   );
                 }));
               },
@@ -33,6 +37,7 @@ class FeaturedFood extends StatelessWidget {
                 width: 200,
                 height: 240,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
@@ -46,17 +51,35 @@ class FeaturedFood extends StatelessWidget {
                   children: [
                     Stack(
                       children: [
-                        Image.asset(
-                          'images/${featuredFoodList[index].imageUrl}',
-                          height: 140,
-                          // width: 140,
+                        ClipRRect(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(16),
+                              topRight: Radius.circular(16)),
+                          child: Stack(
+                            children: [
+                              Positioned.fill(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    child: Loading(),
+                                  ),
+                                ),
+                              ),
+                              FadeInImage.memoryNetwork(
+                                placeholder: kTransparentImage,
+                                image: featuredFoodsList[index].image,
+                                fit: BoxFit.cover,
+                                height: 150,
+                              ),
+                            ],
+                          ),
                         ),
                         Positioned(
                           top: 5,
                           right: 5,
                           child: FavouriteButton(
                             color: Colors.white,
-                            icon: featuredFoodList[index].wish
+                            icon: featuredFoodsList[index].featured
                                 ? Icon(
                                     Icons.favorite,
                                     color: Colors.red,
@@ -77,7 +100,7 @@ class FeaturedFood extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomText(
-                            text: featuredFoodList[index].name,
+                            text: featuredFoodsList[index].name,
                             size: 16,
                             weight: FontWeight.w600,
                           ),
@@ -100,7 +123,7 @@ class FeaturedFood extends StatelessWidget {
                           Row(
                             children: [
                               CustomText(
-                                  text: featuredFoodList[index]
+                                  text: featuredFoodsList[index]
                                       .rating
                                       .toString()),
                               Icon(Icons.star, color: Colors.red, size: 16),
@@ -111,7 +134,8 @@ class FeaturedFood extends StatelessWidget {
                             ],
                           ),
                           CustomText(
-                            text: featuredFoodList[index].price,
+                            text: '\$' +
+                                featuredFoodsList[index].price.toString(),
                             weight: FontWeight.bold,
                           ),
                         ],

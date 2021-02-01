@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ProductModel {
+class CartItemModel {
   static const ID = "id";
   static const NAME = "name";
   static const PRICE = "price";
@@ -22,7 +22,7 @@ class ProductModel {
   String get quantity => _quantity;
   String get productId => _productId;
 
-  ProductModel.fromSnapshot(DocumentSnapshot snapshot) {
+  CartItemModel.fromSnapshot(DocumentSnapshot snapshot) {
     _id = snapshot.get(ID);
     _name = snapshot.get(NAME);
     _price = snapshot.get(PRICE);
